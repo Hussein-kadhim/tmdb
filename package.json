@@ -1,0 +1,14 @@
+{
+  "name": "imdb-app",
+  "version": "1.0.0",
+  "description": "This app is about searching for movies, series, actors",
+  "main": "app.js",
+  "scripts": {
+    "dev": " parcel ./src/pages/index.html ./src/pages/media-details/index.html --port=3000"
+  },
+  "author": "Hussein kadhim",
+  "license": "ISC",
+  "devDependencies": {
+    "parcel": "^2.0.1"
+  }
+}

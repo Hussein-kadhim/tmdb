@@ -1,0 +1,39 @@
+.overlay{
+    background-image: radial-gradient(circle at 20% 50%, rgba(30, 39, 44, 0.95) 0%, rgba(30, 39, 44, 0.95) 100%);
+    background-size: cover;
+    
+};
+      
+.background{
+    background-position: center center;
+    background-repeat: no-repeat;
+      };
+
+     .btn{
+        margin: 30px;
+     };
+
+  ul{
+      background-color: #0d253f;
+  }
+
+  .round{
+    list-style-type: none;
+    border-radius: 50%;
+    width: 46px;
+    height: 46px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+    margin-top: 18px;
+  }
+
+.round span{
+    padding-right: 30px;
+    font-size: 12px;
+}
+
+li{
+    list-style-type: none;
+}
