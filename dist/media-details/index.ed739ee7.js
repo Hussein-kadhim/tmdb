@@ -472,7 +472,7 @@ var _onYouTubeIframeAPIReady = require("../../utils/onYouTubeIframeAPIReady");
     let knownForItems = '';
     knownFor.forEach((item)=>knownForItems += `
       <div class="col-md-3">
-      <img src="${_imageUrlBuilder.imageUrlBuilder(item?.backdrop_path, 'w150_and_h225_bestv2', '150')}" class="rounded" alt="${item?.name ? item.name : item?.title}">
+      <img src="${_imageUrlBuilder.imageUrlBuilder(item?.backdrop_path, '150', '225')}" class="rounded" alt="${item?.name ? item.name : item?.title}">
       <p>${item?.name ? item.name : item?.title}</p>
       </div>
       `
@@ -485,7 +485,7 @@ var _onYouTubeIframeAPIReady = require("../../utils/onYouTubeIframeAPIReady");
             overlay.style.background = 'none';
             root.innerHTML = `<div class="row">
                 <div class="col-md-4">
-                <img class="img-fluid rounded" src=${_imageUrlBuilder.imageUrlBuilder(data?.profile_path, 'w300_and_h450_bestv2', '300')} alt=${data?.name ? data.name : data?.title}>
+                <img class="img-fluid rounded" src=${_imageUrlBuilder.imageUrlBuilder(data?.profile_path, '300', '450')} alt=${data?.name ? data.name : data?.title}>
                 </div>
                 <div class="col-md-8 ps-4">
                 <a href="#"><h1 class="text-dark fw-bolder">${data.name}</h1></a>
@@ -505,7 +505,7 @@ var _onYouTubeIframeAPIReady = require("../../utils/onYouTubeIframeAPIReady");
                 return created_by += `
                     <li class="col-md-4">
                     <div style="display: grid">
-                    <img class="img-thumbnail" src="${_imageUrlBuilder.imageUrlBuilder(creator?.profile_path, 'w150_and_h150_bestv2', '150')}"  alt=${creator?.name} width="150" height="150"/>
+                    <img class="img-thumbnail" src="${_imageUrlBuilder.imageUrlBuilder(creator?.profile_path, '150', '150')}"  alt=${creator?.name} width="150" height="150"/>
                     <a class="text-light fw-bolder mt-2" href=${creator?.id}>${creator?.name}</a>
                     <p class="text-light mt-2" >Maker</p>
                     </div>
@@ -514,7 +514,7 @@ var _onYouTubeIframeAPIReady = require("../../utils/onYouTubeIframeAPIReady");
             root.innerHTML = `
                 <div class="col-4">
                 <div class="card-body">
-                    <img src=${_imageUrlBuilder.imageUrlBuilder(data?.poster_path, 'w300_and_h450_bestv2', '300')} alt=${data?.name ? data.name : data?.title}>
+                    <img src=${_imageUrlBuilder.imageUrlBuilder(data?.poster_path, '300', '450')} alt=${data?.name ? data.name : data?.title}>
                 </div>
             </div>
             <div class="col-8  ps-5">
@@ -608,9 +608,9 @@ var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "imageUrlBuilder", ()=>imageUrlBuilder
 );
-const imageUrlBuilder = (path, tmdbImageOption, placeholderImageOption)=>{
-    const url = `https://image.tmdb.org/t/p/${tmdbImageOption}/${path}`;
-    return path ? url : `https://via.placeholder.com/${placeholderImageOption}`;
+const imageUrlBuilder = (path, width, height)=>{
+    const url = `https://image.tmdb.org/t/p/w${width}_and_h${height}_bestv2/${path}`;
+    return path ? url : `https://via.placeholder.com/${width}`;
 };
 
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"ciiiV":[function(require,module,exports) {

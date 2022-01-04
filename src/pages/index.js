@@ -39,8 +39,8 @@ searchForm.addEventListener('submit', async (event) => {
                       <div class="card text-center" >
                         <img  src="${imageUrlBuilder(
                           poster_path ? poster_path : profile_path,
-                          'w300_and_h450_bestv2',
-                          '300'
+                          '300',
+                          '450'
                         )}" class="card-img-top" />
                          <div class="card-body">
                             <h5 class="card-title">${name ? name : title}</h5>

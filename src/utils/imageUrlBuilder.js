@@ -1,9 +1,5 @@
-export const imageUrlBuilder = (
-  path,
-  tmdbImageOption,
-  placeholderImageOption
-) => {
-  const url = `https://image.tmdb.org/t/p/${tmdbImageOption}/${path}`;
+export const imageUrlBuilder = (path, width, height) => {
+  const url = `https://image.tmdb.org/t/p/w${width}_and_h${height}_bestv2/${path}`;
 
-  return path ? url : `https://via.placeholder.com/${placeholderImageOption}`;
+  return path ? url : `https://via.placeholder.com/${width}`;
 };

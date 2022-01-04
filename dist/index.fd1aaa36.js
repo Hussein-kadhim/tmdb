@@ -477,7 +477,7 @@ searchForm.addEventListener('submit', async (event)=>{
             let output = `
                     <div class="col-md-6 col-lg-4 p-2">
                       <div class="card text-center" >
-                        <img  src="${_imageUrlBuilder.imageUrlBuilder(poster_path ? poster_path : profile_path, 'w300_and_h450_bestv2', '300')}" class="card-img-top" />
+                        <img  src="${_imageUrlBuilder.imageUrlBuilder(poster_path ? poster_path : profile_path, '300', '450')}" class="card-img-top" />
                          <div class="card-body">
                             <h5 class="card-title">${name ? name : title}</h5>
                             ${media_type === 'person' ? `<p class="card-title fw-bolder">${gender == '2' ? 'male' : gender == '1' ? 'female' : 'non-binary'}</h5>` : `<p></p>`}
@@ -509,9 +509,9 @@ var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "imageUrlBuilder", ()=>imageUrlBuilder
 );
-const imageUrlBuilder = (path, tmdbImageOption, placeholderImageOption)=>{
-    const url = `https://image.tmdb.org/t/p/${tmdbImageOption}/${path}`;
-    return path ? url : `https://via.placeholder.com/${placeholderImageOption}`;
+const imageUrlBuilder = (path, width, height)=>{
+    const url = `https://image.tmdb.org/t/p/w${width}_and_h${height}_bestv2/${path}`;
+    return path ? url : `https://via.placeholder.com/${width}`;
 };
 
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"ciiiV":[function(require,module,exports) {

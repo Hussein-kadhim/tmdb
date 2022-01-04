@@ -18,8 +18,8 @@ import { onYouTubeIframeAPIReady } from '../../utils/onYouTubeIframeAPIReady';
       <div class="col-md-3">
       <img src="${imageUrlBuilder(
         item?.backdrop_path,
-        'w150_and_h225_bestv2',
-        '150'
+        '150',
+        '225'
       )}" class="rounded" alt="${item?.name ? item.name : item?.title}">
       <p>${item?.name ? item.name : item?.title}</p>
       </div>
@@ -37,8 +37,8 @@ import { onYouTubeIframeAPIReady } from '../../utils/onYouTubeIframeAPIReady';
                 <div class="col-md-4">
                 <img class="img-fluid rounded" src=${imageUrlBuilder(
                   data?.profile_path,
-                  'w300_and_h450_bestv2',
-                  '300'
+                  '300',
+                  '450'
                 )} alt=${data?.name ? data.name : data?.title}>
                 </div>
                 <div class="col-md-8 ps-4">
@@ -67,7 +67,7 @@ import { onYouTubeIframeAPIReady } from '../../utils/onYouTubeIframeAPIReady';
                     <div style="display: grid">
                     <img class="img-thumbnail" src="${imageUrlBuilder(
                       creator?.profile_path,
-                      'w150_and_h150_bestv2',
+                      '150',
                       '150'
                     )}"  alt=${creator?.name} width="150" height="150"/>
                     <a class="text-light fw-bolder mt-2" href=${creator?.id}>${
@@ -83,8 +83,8 @@ import { onYouTubeIframeAPIReady } from '../../utils/onYouTubeIframeAPIReady';
                 <div class="card-body">
                     <img src=${imageUrlBuilder(
                       data?.poster_path,
-                      'w300_and_h450_bestv2',
-                      '300'
+                      '300',
+                      '450'
                     )} alt=${data?.name ? data.name : data?.title}>
                 </div>
             </div>
