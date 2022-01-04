@@ -459,55 +459,90 @@ function hmrAcceptRun(bundle, id) {
 }
 
 },{}],"gKEd4":[function(require,module,exports) {
+var _imageUrlBuilder = require("../utils/imageUrlBuilder");
 const searchForm = document.getElementById('form');
 const searchInput = document.getElementById('search');
 const movieListTitle = document.querySelector('.row');
-const yearInput = document.getElementById('year');
 window.getMovieData = getMovieData;
 searchForm.addEventListener('submit', async (event)=>{
     event.preventDefault();
     const locale = 'en-US';
     const url = `${"https://api.themoviedb.org/3"}/search/multi?api_key=${"52dc107af6114f80e0922c36ffefb70f"}&language=${locale}&query=${encodeURIComponent(searchInput.value)}`;
-    if (searchInput.value.trim() === '') alert("This field is required");
+    if (searchInput.value.trim() === '') alert('This field is required');
     else try {
         const res = await fetch(url);
         const { results  } = await res.json();
         for(let index = 0; index < results.length; index++){
-            const { backdrop_path , original_name , id , media_type , release_date , title  } = results[index];
-            if (media_type === "person") {
-                console.log(results[index]);
-                // TODO
-                // dISPLAY THE PERSON DATA IN A CARD USE THE SAME CARD BELOW
-                //  USER THE IMAGEBUILDERURL FUNCTION FOR THE CARD AND HANDLE THE DATA AS WELL
-                return;
-            }
+            const { name , known_for_department , gender , poster_path , profile_path , id , media_type , release_date , title , first_air_date , known_for ,  } = results[index];
             let output = `
-                    <div class="col-md-4 p-2">
-                      <div class="card text-center" style="max-width: 18rem;">
-                        <img src=https://image.tmdb.org/t/p/original${backdrop_path} class="card-img-top" alt="...">
+                    <div class="col-md-6 col-lg-4 p-2">
+                      <div class="card text-center" >
+                        <img  src="${_imageUrlBuilder.imageUrlBuilder(poster_path ? poster_path : profile_path, 'w300_and_h450_bestv2', '300')}" class="card-img-top" />
                          <div class="card-body">
-                            <h5 class="card-title">${original_name ? original_name : title}</h5>
+                            <h5 class="card-title">${name ? name : title}</h5>
+                            ${media_type === 'person' ? `<p class="card-title fw-bolder">${gender == '2' ? 'male' : gender == '1' ? 'female' : 'non-binary'}</h5>` : `<p></p>`}
+                            ${media_type === 'person' ? `<p>${known_for_department}</p>` : `<p class="card-text">Release date ${release_date ? release_date : first_air_date}</p>`}
                             <p class="card-text">${media_type}</p>
-                            <p class="card-text">Release date ${release_date}</p>
-                            <a href="/media-details/index.html"  onclick="getMovieData('${id}', '${media_type}')" class="btn btn-primary">Get more info </a>
+                            <a href="/media-details/index.html"  onclick="getMovieData('${id}', '${media_type}' , '${encodeURIComponent(JSON.stringify(known_for))}')" class="btn btn-primary">Get more info </a>
                           </div>
                         </div>
                      </div>
                         `;
             movieListTitle.innerHTML += output;
         }
-        searchInput.value = "";
+        searchInput.value = '';
     } catch (error) {
     }
 });
-function getMovieData(id, type) {
+function getMovieData(id, type, known_for) {
     const data = {
         id,
-        type
+        type,
+        known_for: decodeURIComponent(known_for)
     };
     localStorage.clear();
     localStorage.setItem('data', JSON.stringify(data));
 }
+
+},{"../utils/imageUrlBuilder":"7xmT4"}],"7xmT4":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "imageUrlBuilder", ()=>imageUrlBuilder
+);
+const imageUrlBuilder = (path, tmdbImageOption, placeholderImageOption)=>{
+    const url = `https://image.tmdb.org/t/p/${tmdbImageOption}/${path}`;
+    return path ? url : `https://via.placeholder.com/${placeholderImageOption}`;
+};
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"ciiiV":[function(require,module,exports) {
+exports.interopDefault = function(a) {
+    return a && a.__esModule ? a : {
+        default: a
+    };
+};
+exports.defineInteropFlag = function(a) {
+    Object.defineProperty(a, '__esModule', {
+        value: true
+    });
+};
+exports.exportAll = function(source, dest) {
+    Object.keys(source).forEach(function(key) {
+        if (key === 'default' || key === '__esModule' || dest.hasOwnProperty(key)) return;
+        Object.defineProperty(dest, key, {
+            enumerable: true,
+            get: function() {
+                return source[key];
+            }
+        });
+    });
+    return dest;
+};
+exports.export = function(dest, destName, get) {
+    Object.defineProperty(dest, destName, {
+        enumerable: true,
+        get: get
+    });
+};
 
 },{}]},["iAks0","gKEd4"], "gKEd4", "parcelRequire1d13")
 
